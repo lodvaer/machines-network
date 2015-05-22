@@ -1,0 +1,61 @@
+name:                machines-network
+version:             0.1.0.0
+synopsis:            Stream transducers for network protocols.
+description:         Use machines to communicate over network.
+homepage:            https://github.com/lodvaer/machines-network
+bug-reports:         https://github.com/lodvaer/machines-network/issues
+license:             BSD3
+license-file:        LICENSE
+author:              Lodvær
+maintainer:          lodvaer@gmail.com
+category:            Control
+build-type:          Simple
+cabal-version:       >=1.10
+
+source-repository head
+  type: git
+  location: https://github.com/lodvaer/machines-network.git
+
+library
+  exposed-modules:   Network.Machine
+                     Network.Machine.Protocol.HTTP
+                     Network.Machine.Protocol.LMTP
+                     Network.Machine.Protocol.NNTP
+                     Network.Machine.Protocol.SMTP
+                     Network.Machine.Protocol.SOCKS
+                     Network.Machine.Protocol.Torrent
+
+                     Data.Machine.AltWye
+                     Data.Machine.Duplex
+                     Data.Machine.STM
+
+  build-depends:       base ==4.*
+                     , attoparsec ==0.12.*
+                     , bytestring
+                     , exceptions
+                     , lens >=4.11
+                     , machines >=0.5 && <0.6
+                     , machines-attoparsec
+                     , monad-control
+                     , mtl
+                     , network
+                     , resourcet
+                     , text
+                     , transformers
+                     , transformers-base
+                     , async
+                     , stm
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  ghc-options:         -Wall
+
+test-suite doctests
+  type:    exitcode-stdio-1.0
+  main-is: doctests.hs
+  default-language: Haskell2010
+  build-depends:
+    base == 4.*,
+    doctest >= 0.8 && <= 0.10,
+    case-insensitive
+  ghc-options: -Wall -threaded
+  hs-source-dirs: tests
