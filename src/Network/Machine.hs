@@ -136,7 +136,7 @@ socket k so = duplex
         liftIO $ BSo.recv so 4096
     soSend x = do
         y <- liftIO $
-            (True <$ BSo.sendAll so x)
+            (True <$ BSo.sendAll so x) -- TODO: no print.
                 `catch` (\(e :: IOException) -> False <$ print e)
         unless y close
 
